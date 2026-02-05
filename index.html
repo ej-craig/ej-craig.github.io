@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon | Web Accessibility Blog</title>
+  <title>Coming Soon | Accessibility Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <button id="theme-toggle" aria-label="Toggle dark/light theme">🌙</button>
+  <header>
+    <h1>Coming Soon: Accessibility Blog</h1>
+    <p>Catch the accessible elements! Avoid inaccessible ones!</p>
+    <div id="score">Score: 0</div>
+  </header>
 
-  <main class="container">
-    <h1>Coming Soon</h1>
-    <p>We're building something exciting about <strong>web accessibility</strong>. Stay tuned!</p>
-
-    <div class="dots" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </div>
-
-    <p class="assistive-text">This page is under construction. Check back soon for accessible insights!</p>
+  <main id="game-area">
+    <div id="player" tabindex="0" aria-label="Player catcher. Use arrow keys to move left or right."></div>
   </main>
+
+  <footer>
+    <p class="assistive-text">This mini-game teaches accessibility principles while the blog is under construction.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

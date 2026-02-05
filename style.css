@@ -1,127 +1,79 @@
-/* Reset & base styles */
-* {
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  overflow-x: hidden;
+  height: 100vh;
 }
 
-html, body {
-  height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: background 0.5s, color 0.5s;
+header {
+  text-align: center;
+  padding: 2rem 1rem;
 }
 
-body {
+#score {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+#game-area {
+  position: relative;
+  height: 60vh;
+  width: 100%;
+  overflow: hidden;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  background: rgba(0,0,0,0.2);
+}
+
+/* Falling elements */
+.element {
+  position: absolute;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 1rem;
-  background: var(--bg);
-  color: var(--text);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-:root {
-  --bg: linear-gradient(135deg, #1e3c72, #2a5298);
-  --text: #ffffff;
-  --dot: #FFDD57;
-  --container-bg: rgba(0,0,0,0.5);
-  --button-bg: rgba(255, 255, 255, 0.2);
-  --button-text: #fff;
+.accessible {
+  background-color: #28a745; /* Green = good */
 }
 
-body.light {
-  --bg: linear-gradient(135deg, #e0eafc, #cfdef3);
-  --text: #111;
-  --dot: #ff6b6b;
-  --container-bg: rgba(255,255,255,0.85);
-  --button-bg: rgba(0,0,0,0.1);
-  --button-text: #111;
+.inaccessible {
+  background-color: #dc3545; /* Red = bad */
 }
 
-.container {
-  max-width: 600px;
-  background: var(--container-bg);
-  padding: 3rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  transition: background 0.5s, color 0.5s;
-}
-
-h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-p {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-}
-
-/* Animated dots */
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.dots span {
-  display: block;
-  width: 12px;
-  height: 12px;
-  background: var(--dot);
-  border-radius: 50%;
-  animation: bounce 1.2s infinite ease-in-out;
-}
-
-.dots span:nth-child(2) { animation-delay: 0.2s; }
-.dots span:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes bounce {
-  0%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-15px); }
-}
-
-/* Assistive text for screen readers */
-.assistive-text {
+/* Player catcher */
+#player {
   position: absolute;
-  left: -9999px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+  bottom: 10px;
+  left: 50%;
+  width: 80px;
+  height: 20px;
+  background-color: #FFD93D;
+  border-radius: 5px;
+  transform: translateX(-50%);
+  transition: left 0.05s linear;
 }
 
 /* Focus styles */
 :focus {
-  outline: 3px dashed var(--dot);
-  outline-offset: 4px;
-}
-
-/* Theme toggle button */
-#theme-toggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  background: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-}
-
-#theme-toggle:focus {
-  outline: 3px dashed var(--dot);
+  outline: 3px dashed #FFDD57;
   outline-offset: 4px;
 }
 
 /* Motion-reduce */
 @media (prefers-reduced-motion: reduce) {
-  .dots span { animation: none; }
-  html { transition: none; }
+  .element, #player {
+    transition: none;
+  }
 }
